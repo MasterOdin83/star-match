@@ -3,13 +3,13 @@ import Game from './Game';
 
 const StarMatch = () => {
     const [gameId, setGameId] = useState(1);
-    const [dificulty, setDificulty] = useState(10);
+    // const [dificulty, setDificulty] = useState(10);
     return <Game
         key={gameId}
-        dificulty={dificulty}
-        startNewGame={(newDificulty) => {
+        // dificulty={dificulty}
+        startNewGame={() => {
+            // setDificulty(newDificulty);
             setGameId(gameId + 1);
-            setDificulty(newDificulty);
         }} />;
 }
 

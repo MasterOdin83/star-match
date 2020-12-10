@@ -6,11 +6,11 @@ import PlayNumber from './PlayNumber'
 import utils from '../utils';
 
 
-const useGameState = props => {
+const useGameState = () => {
     const [stars, setStars] = useState(utils.random(1, 9));
     const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
     const [candidateNums, setCandidateNums] = useState([]);
-    const [secondsLeft, setSecondsLeft] = useState(props.dificulty);
+    const [secondsLeft, setSecondsLeft] = useState(10);
 
     useEffect(() => {
         if (secondsLeft > 0 && availableNums.length > 0) {

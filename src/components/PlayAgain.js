@@ -8,9 +8,9 @@ const PlayAgain = props => (
         >
             {props.gameStatus === 'lost' ? 'Game Over' : 'Nice'}
         </div>
-        <button onClick={() => props.onClick(15)}>Play  (Easy)</button>
-        <button onClick={() => props.onClick(10)}>Play  (Medium)</button>
-        <button onClick={() => props.onClick(5)}>Play  (Hard)</button>
+        <button onClick={props.onClick}>Play  (Easy)</button>
+        {/* <button onClick={() => props.onClick(10)}>Play  (Medium)</button>
+        <button onClick={() => props.onClick(5)}>Play  (Hard)</button> */}
     </div>
 );
 
