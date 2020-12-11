@@ -1,4 +1,4 @@
-.game {
+.game,.scoreBoard {
   max-width: 500px;
   margin: 0 auto;
 }
@@ -60,4 +60,18 @@
   font-size: 250%;
   font-weight: bold;
   margin: 15px;
+}
+
+.newGameBtn{
+  display: -moz-inline-grid;
+  display: -ms-inline-grid;
+  margin-top:10px;
+}
+
+.playButton{
+    margin-top:10px;
+}
+
+.scoreBoard{
+
 }

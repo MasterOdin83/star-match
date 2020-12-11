@@ -6,16 +6,19 @@ import PlayNumber from './PlayNumber'
 import utils from '../utils';
 
 
-const useGameState = () => {
+const useGameState = (dificulty, setNewScore) => {
     const [stars, setStars] = useState(utils.random(1, 9));
     const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
     const [candidateNums, setCandidateNums] = useState([]);
-    const [secondsLeft, setSecondsLeft] = useState(10);
+    const [secondsLeft, setSecondsLeft] = useState(dificulty);
 
     useEffect(() => {
-        if (secondsLeft > 0 && availableNums.length > 0) {
+        if (secondsLeft >= 1 && availableNums.length > 0) {
             const timerId = setTimeout(() => setSecondsLeft(secondsLeft - 1), 1000);
             return () => clearTimeout(timerId);
+        }
+        else {
+            setNewScore(secondsLeft);
         }
     });
 
@@ -42,13 +45,11 @@ const Game = props => {
         candidateNums,
         secondsLeft,
         setGameState,
-    } = useGameState(15);
-
+    } = useGameState(props.dificulty, props.setNewScore);
     const candidatesAreWrong = utils.sum(candidateNums) > stars;
     const gameStatus = availableNums.length === 0
         ? 'won'
         : secondsLeft === 0 ? 'lost' : 'active'
-
     const numberStatus = number => {
         if (!availableNums.includes(number)) {
             return 'used';
@@ -71,18 +72,23 @@ const Game = props => {
                 ? candidateNums.concat(number)
                 : candidateNums.filter(cn => cn !== number);
 
+
         setGameState(newCandidateNums);
+
+
     };
 
     return (
         <div className="game">
             <div className="help">
                 Pick 1 or more numbers that sum to the number of stars
-        </div>
+            </div>
             <div className="body">
                 <div className="left">
                     {gameStatus !== 'active' ? (
-                        <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
+                        <PlayAgain
+                            onClick={props.startNewGame}
+                            gameStatus={gameStatus} />
                     ) : (
                             <StarsDisplay count={stars} />
                         )}
